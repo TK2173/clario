@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a1020">
+  <meta name="description" content="CLARIO — пойми сложное с помощью интерактивных схем.">
+  <title>CLARIO — Understand Everything</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="CLARIO — главная">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="18" r="2.2"/><path d="M10.8 7 6.2 16M13.2 7l4.6 9M7.4 18h9.2"/></svg></span>
+        <span><strong>CLARIO</strong><small>UNDERSTAND EVERYTHING</small></span>
+      </a>
+      <div class="top-status"><span class="status-dot"></span> Визуальное обучение</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow"><span class="sparkle">✦</span> YOUR VISUAL LEARNING SPACE</div>
+        <h1>Сложное становится<br><span>понятным.</span></h1>
+        <p class="hero-copy">Выбери тему и разбери её по шагам — с интерактивными схемами вместо стены текста.</p>
+        <form id="topic-form" class="topic-form">
+          <label class="sr-only" for="topic-input">Что хочешь понять?</label>
+          <textarea id="topic-input" rows="2" placeholder="Что хочешь понять? Например: как работает интернет…"></textarea>
+          <div class="input-footer">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"/></svg> Выбери тему из библиотеки</span>
+            <button class="primary-button" type="submit">Открыть схему <span aria-hidden="true">↗</span></button>
+          </div>
+        </form>
+      </section>
+
+      <section class="library-section">
+        <div class="section-heading"><div><div class="eyebrow">БИБЛИОТЕКА</div><h2>С чего начнём?</h2></div><span class="count-pill">03 темы</span></div>
+        <div class="topic-grid">
+          <button class="topic-card physics" data-topic="electricity">
+            <span class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><ellipse cx="12" cy="12" rx="3.5" ry="8.5"/><path d="M3.8 9h16.4M3.8 15h16.4"/></svg></span>
+            <span class="card-title">Физика</span><span class="card-desc">Понятно и наглядно</span><span class="card-arrow">↗</span>
+          </button>
+          <button class="topic-card tech" data-topic="internet">
+            <span class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"/></svg></span>
+            <span class="card-title">Технологии</span><span class="card-desc">Разобраться в сложном</span><span class="card-arrow">↗</span>
+          </button>
+          <button class="topic-card study" data-topic="geometry">
+            <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 8h8v8H8zM4 12h4m8 0h4M12 4v4m0 8v4"/></svg></span>
+            <span class="card-title">Учёба</span><span class="card-desc">Схемы вместо зубрёжки</span><span class="card-arrow">↗</span>
+          </button>
+        </div>
+      </section>
+
+      <section id="lesson" class="lesson-section hidden" aria-live="polite">
+        <div class="lesson-heading">
+          <div><div class="eyebrow">ИНТЕРАКТИВНОЕ ОБЪЯСНЕНИЕ</div><h2 id="lesson-title">Тема</h2><p id="lesson-subtitle"></p></div>
+          <button id="close-lesson" class="icon-button" aria-label="Закрыть объяснение">×</button>
+        </div>
+        <div class="lesson-layout">
+          <div class="diagram-panel">
+            <div class="panel-top"><span class="live-dot"></span> СХЕМА ПРОЦЕССА <span class="panel-index" id="step-count">01 / 04</span></div>
+            <div id="diagram" class="diagram"></div>
+            <div class="diagram-hint"><span>↳</span> Нажми на блок, чтобы узнать больше</div>
+          </div>
+          <aside class="explanation-panel">
+            <div class="explanation-label"><span class="mini-star">✦</span> РАЗБИРАЕМ ПО ШАГАМ</div>
+            <div id="step-number" class="step-number">ШАГ 01</div>
+            <h3 id="step-title">Выбери блок на схеме</h3>
+            <p id="step-description">Здесь появится объяснение выбранного элемента.</p>
+            <div class="level-switch" role="group" aria-label="Уровень объяснения">
+              <button class="level-button active" data-level="simple">Просто</button>
+              <button class="level-button" data-level="detail">Подробнее</button>
+              <button class="level-button" data-level="deep">Глубже</button>
+            </div>
+            <div id="level-note" class="level-note">Коротко и понятным языком.</div>
+            <button id="next-step" class="next-button">Следующий шаг <span>→</span></button>
+          </aside>
+        </div>
+      </section>
+
+      <section class="promise-strip">
+        <div class="promise-icon">✦</div><div><strong>Пойми суть. Увидь связи. Разберись сам.</strong><span>Без лишнего шума — только понятные объяснения.</span></div>
+      </section>
+    </main>
+    <footer><span>CLARIO © <span id="year"></span></span><span>LEARN VISUALLY</span></footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
